@@ -9,8 +9,9 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import { useNavigate } from 'react-router-dom';
 import { routeNames } from '../../todo/routes/routesName';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
- export const ResponsiveAppBar = () => {
+ export const ResponsiveAppBar = ({ title = 'TODO APP', showBackBtn = true }) => {
 
   const navigate = useNavigate();
 
@@ -18,13 +19,20 @@ import { routeNames } from '../../todo/routes/routesName';
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+          {
+            showBackBtn &&
+            <IconButton onClick={() => navigate(-1)} style={{ marginRight: 10, color: 'white' }}>
+              <ArrowBackIcon />
+            </IconButton>
+          }
+
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ mr: 2, flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
           >
-            TODO APP
+            {title}
           </Typography>
 
           <Box sx={{ flexGrow: 0 }}>
